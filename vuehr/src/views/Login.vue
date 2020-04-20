@@ -69,9 +69,9 @@ export default {
           // 1. 将登录成功之后的user保存到客户端的sessionStorage中
           //    1.1 项目中出了登录之外的其它API接口，必须在登录之后才能访问
           //    1.2 user只应在当前网站打开期间生效，所以将user保存在sessionStorage中
-          // window.sessiontStorate.setItem("user", JSON.stringify(resp.obj));
+           window.sessionStorage.setItem("user", JSON.stringify(resp.obj));
           // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
-          // this.$router.replace('/home')
+           this.$router.replace('/home')
         }
       })
     }
