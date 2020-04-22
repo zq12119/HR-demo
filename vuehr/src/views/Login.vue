@@ -62,7 +62,7 @@ export default {
         if (!valid) {
           return this.$message.error('用户名或密码格式不正确，请重新输入')
         }
-        const resp = await postKeyValueRequest('/doLogin', this.loginForm)
+         const resp = await this.postKeyValueRequest('/doLogin', this.loginForm)
         console.log(resp)
         if (resp) {
           this.$message.success('登录成功')

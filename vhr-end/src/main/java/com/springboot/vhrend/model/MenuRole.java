@@ -1,13 +1,13 @@
 package com.springboot.vhrend.model;
 
-
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class HrRole implements Serializable {
+public class MenuRole implements Serializable {
     private Integer id;
-    private Integer hrid;
+    private Integer mid;
     private Integer rid;
+    private static final long serialVersionUID = 1L;
 }
