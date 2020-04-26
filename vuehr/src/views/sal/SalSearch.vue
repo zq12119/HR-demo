@@ -1,12 +1,12 @@
 <template>
   <div>
-    员工培训
+    工资表查询
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PerTrain',
+  name: 'SalSearch',
   data () {
     return {}
   }

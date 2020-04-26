@@ -1,12 +1,12 @@
 <template>
   <div>
-    员工培训
+    初始化数据库
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PerTrain',
+  name: 'SysInit',
   data () {
     return {}
   }

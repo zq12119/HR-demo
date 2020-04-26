@@ -6,12 +6,13 @@ import Home from '../views/Home'
 Vue.use(VueRouter)
 
 const routes = [
-    {path:'/',name:'Login',component:Login,hidden:true},
-    {path:'/home',name:'Home',component:Home,hidden:true}
+  { path: '/', name: 'Login', component: Login, hidden: true },
+  { path: '/home', name: 'Home', component: Home, hidden: true }
+  
 ]
 
 const router = new VueRouter({
-    routes
+  routes
 })
 
 export default router

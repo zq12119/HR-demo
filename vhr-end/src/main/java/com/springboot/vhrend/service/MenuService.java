@@ -14,8 +14,6 @@ public class MenuService {
     @Autowired
     MenuMapper menuMapper;
     public List<Menu> getMenusByHrId() {
-        return menuMapper.getMenusByHrId(((Hr)
-                SecurityContextHolder.getContext()
-                        .getAuthentication().getPrincipal()).getId());
+        return menuMapper.getMenusByHrId(((Hr) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
     }
 }

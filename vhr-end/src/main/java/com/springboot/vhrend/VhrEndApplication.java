@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.springboot.vhrend.mapper")
+@MapperScan("com.springboot.vhrend")
 public class VhrEndApplication {
 
     public static void main(String[] args) {

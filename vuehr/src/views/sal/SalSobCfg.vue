@@ -1,12 +1,12 @@
 <template>
   <div>
-    员工培训
+    员工账套设置
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PerTrain',
+  name: 'SalSobCfg',
   data () {
     return {}
   }

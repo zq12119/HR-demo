@@ -1,12 +1,12 @@
 <template>
   <div>
-    员工培训
+    综合信息统计
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PerTrain',
+  name: 'StaAll',
   data () {
     return {}
   }

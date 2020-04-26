@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         response.setContentType("application/json;charset=utf-8");
                         PrintWriter out = response.getWriter();
                         Hr hr = (Hr) authentication.getPrincipal();
-                        hr.setPassword("");
+                        hr.setPassword("123");
                         RespBean ok = RespBean.ok("登录成功", hr);
                         out.write(new ObjectMapper().writeValueAsString(ok));
                         out.flush();

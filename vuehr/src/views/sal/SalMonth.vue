@@ -1,12 +1,12 @@
 <template>
   <div>
-    员工培训
+    月末处理
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PerTrain',
+  name: 'SalMonth',
   data () {
     return {}
   }

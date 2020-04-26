@@ -8,8 +8,10 @@ public interface HrMapper {
     int insert(Hr record);
     int insertSelective(Hr record);
     Hr selectByPrimaryKey(Integer id);
+
     int updateByPrimaryKeySelective(Hr record);
     int updateByPrimaryKey(Hr record);
+
     @Select("select * from hr where username=#{username}")
     Hr loadUserByUsername(String username);
 }

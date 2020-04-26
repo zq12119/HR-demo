@@ -1,12 +1,12 @@
 <template>
   <div>
-    员工培训
+    系统管理
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PerTrain',
+  name: 'SysCfg',
   data () {
     return {}
   }
