@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private HrService hrService;
 

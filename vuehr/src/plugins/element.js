@@ -9,7 +9,9 @@ import {
   Container, Header, Aside, Main,
   Dropdown, DropdownMenu, DropdownItem, MessageBox,
   Menu, Submenu, MenuItem,
-  Breadcrumb, BreadcrumbItem
+  Breadcrumb, BreadcrumbItem,
+  Tabs,TabPane,
+  Table,TableColumn,Dialog,Tag
 } from 'element-ui'
 
 Vue.use(Button)
@@ -29,6 +31,12 @@ Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Dialog)
+Vue.use(Tag)
 
 // 把Messag挂载到Vue的原型对象上
 Vue.prototype.$message = Message

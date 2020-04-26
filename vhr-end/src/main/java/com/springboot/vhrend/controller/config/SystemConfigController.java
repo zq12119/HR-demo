@@ -1,4 +1,4 @@
-package com.springboot.vhrend.controller;
+package com.springboot.vhrend.controller.config;
 
 import com.springboot.vhrend.model.Menu;
 import com.springboot.vhrend.service.MenuService;
