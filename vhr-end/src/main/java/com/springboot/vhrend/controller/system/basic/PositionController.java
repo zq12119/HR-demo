@@ -14,6 +14,7 @@ import java.util.List;
 @Api(value = "职位管理",tags = {"职位管理窗口"})
 @RequestMapping("/system/basic/pos")
 public class PositionController {
+
     @Autowired
     PositionService positionService;
 
@@ -41,6 +42,7 @@ public class PositionController {
         }
         return RespBean.error("更新失败");
     }
+
     @ApiOperation(value = "删除职位信息",notes = "根据id删除信息")
     @DeleteMapping("/{id}")
     public RespBean deletePosition(@PathVariable Integer id) {

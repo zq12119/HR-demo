@@ -1,18 +1,15 @@
 <template>
-  <div>
-    奖惩管理
-  </div>
+  <div>奖惩管理</div>
 </template>
 
 <script>
 export default {
   name: 'Reward',
-  data () {
+  data() {
     return {}
   }
 }
 </script>
 
 <style scoped>
-
 </style>

@@ -11,7 +11,8 @@ import {
   Menu, Submenu, MenuItem,
   Breadcrumb, BreadcrumbItem,
   Tabs,TabPane,
-  Table,TableColumn,Dialog,Tag
+  Table,TableColumn,Dialog,Tag,
+  Select,Option,Switch
 } from 'element-ui'
 
 Vue.use(Button)
@@ -37,6 +38,9 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Dialog)
 Vue.use(Tag)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Switch)
 
 // 把Messag挂载到Vue的原型对象上
 Vue.prototype.$message = Message

@@ -3,7 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './plugins/element.js'
-import { initMenu } from './utils/menus'
+import {
+  initMenu
+} from './utils/menus'
 
 // 导入全局样式
 import './assets/css/global.css'
@@ -13,8 +15,13 @@ import './assets/fonts/iconfont.css'
 import 'font-awesome/css/font-awesome.css'
 
 // 导入api的全局函数
-import { postKeyValueRequest, getRequest, postRequest,
-  putRequest, deleteRequest } from './utils/api'
+import {
+  postKeyValueRequest,
+  getRequest,
+  postRequest,
+  putRequest,
+  deleteRequest
+} from './utils/api'
 
 Vue.prototype.postKeyValueRequest = postKeyValueRequest;
 Vue.prototype.getRequest = getRequest;
@@ -29,7 +36,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/') {
     next()
   } else {
-    if(window.sessionStorage.getItem('user')) {
+    if (window.sessionStorage.getItem('user')) {
       initMenu(router, store)
       console.log(to)
       console.log(from)

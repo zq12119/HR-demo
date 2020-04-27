@@ -12,8 +12,6 @@ export default new Vuex.Store({
       state.routes = data
     }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })

@@ -23,10 +23,10 @@
 
 <script>
 // 导入子组件
-import Department from '../../component/sys/basic/Department';
-import JobLevel from '../../component/sys/basic/JobLevel';
-import Permission from '../../component/sys/basic/Permission';
-import Position from '../../component/sys/basic/Position';
+import Department from '../../component/sys/basic/Department'
+import JobLevel from '../../component/sys/basic/JobLevel'
+import Permission from '../../component/sys/basic/Permission'
+import Position from '../../component/sys/basic/Position'
 import Reward from '../../component/sys/basic/Reward'
 export default {
   name: 'SysBasic',
@@ -43,7 +43,7 @@ export default {
     Reward,
     Permission
   }
-};
+}
 </script>
 
 <style scoped>
