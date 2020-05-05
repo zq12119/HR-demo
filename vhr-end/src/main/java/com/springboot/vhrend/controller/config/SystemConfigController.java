@@ -13,14 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/system/config")
-@Api(value = "SystemConfigController",tags = {"系统管理菜单"})
+@Api(value = "SystemConfigController", tags = {"系统菜单管理"})
 public class SystemConfigController {
-
     @Autowired
     MenuService menuService;
 
     @GetMapping("/menu")
-    @ApiOperation(value = "获取菜单",notes = "根据登录用户的id获取菜单")
+    @ApiOperation(value = "获取菜单", notes = "根据登录用户id获取菜单")
     public List<Menu> getMenusByHrId() {
         return menuService.getMenusByHrId();
     }

@@ -15,7 +15,7 @@
         <Reward></Reward>
       </el-tab-pane>
       <el-tab-pane label="权限组" name="five">
-        <Pemission></Pemission>
+        <Permission></Permission>
       </el-tab-pane>
     </el-tabs>
   </div>

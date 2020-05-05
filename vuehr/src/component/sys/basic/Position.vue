@@ -12,6 +12,17 @@
       ></el-input>
       <el-button type="primary" icon="el-icon-plus" size="small" @click="addPosition">添加</el-button>
     </div>
+    <!-- <div>
+      <el-upload action="/system/basic/pos/import" :show-file-list="false" :before-upload="beforeUpload" :on-success="onSuccess"
+      :on-error="onError" :disabled="importBtnDisabled" style="display:inline-flex;margin-right:10px">
+      <el-button :disabled="importBtnDisabled" type="success" :icon="importBtnIcon" size="small">
+            {{importBtnText}}
+      </el-button>
+      </el-upload>
+      <el-button type="success" icon="el-icon-download" size="small" @click="exportData">
+          导出数据
+      </el-button>
+    </div> -->
     <div>
       <!-- 表格birder为true有边框 -->
       <el-table
@@ -42,6 +53,10 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class="pageable">
+        <el-pagination :total="pageInfo.total"  :page-size="5" @current-change="handleCurrentChange" layout="sizes,prev,pager,next,jumper,->,total,slot"
+          page-sizes="[5,10,20,50,100]" @size-change="handleSizeChange"></el-pagination>
+      </div>
       <el-button
         type="danger"
         size="small"
@@ -76,6 +91,7 @@ export default {
       pos: {
         name: ''
       },
+     
       //显示表格的数据
       positions: [],
       // 更新按钮的数据
@@ -86,17 +102,39 @@ export default {
       // 对话框显示与否的标志位
       dialogVisible: false,
       // 批量删除的数据记录
-      multipleSelection: []
+      multipleSelection: [],
+      loading:true,
+      pageInfo:{
+        total:0,
+        page:1,
+        size:5
+      },
     }
   },
 
   methods: {
     // 表格数据初始化处理
     async initPositions() {
-      const data = await this.getRequest('/system/basic/pos/')
-      if (data) {
-        this.positions = data.obj
+      // const data = await this.getRequest('/system/basic/pos/')
+      // if (data) {
+      //   this.positions = data.obj
+      // }
+      // this.loading=true
+      const resp=await this.getRequest('/system/basic/pos/?page='+this.pageInfo.page+'&size='
+      +this.pageInfo.size)
+      if(resp){
+        this.positions=resp.obj.list
+        this.pageInfo.total=resp.obj.total
+
       }
+    },
+    handleSizeChange(currestSize){
+      this.pageInfo.size=currestSize
+      this.initPositions()
+    },
+    handleCurrentChange(currentPage){
+      this.pageInfo.page=currentPage
+      this.initPositions()
     },
     // 添加新记录的事件处理
     async addPosition() {
