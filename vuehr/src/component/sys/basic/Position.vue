@@ -1,28 +1,39 @@
 // 静态页面
 <template>
   <div>
-    <div>
-      <el-input
-        v-model="pos.name"
-        placeholder="添加职位"
-        size="small"
-        class="input_type"
-        prefix-icon="el-icon-plus"
-        @keydown.enter.native="addPosition"
-      ></el-input>
-      <el-button type="primary" icon="el-icon-plus" size="small" @click="addPosition">添加</el-button>
+    <div style="display: flex;justify-content;" >
+      <div>
+        <el-input
+          v-model="pos.name"
+          placeholder="添加职位"
+          size="small"
+          class="input_type"
+          prefix-icon="el-icon-plus"
+          @keydown.enter.native="addPosition"
+        ></el-input>
+        <el-button type="primary" icon="el-icon-plus" size="small" @click="addPosition">添加</el-button>
+      </div>
+      <div style="margin-left:80px">
+        <!-- action文件上传地址 -->
+        <el-upload
+          style="display:inline-flex;margin-right:10px"
+          action="/system/basic/pos/import"
+          :show-file-list="false"
+          :before-upload="beforeUpload"
+          :on-success="onSuccess"
+          :on-error="onError"
+          :disabled="importDisabled"
+        >
+          <el-button
+            size="small"
+            type="success"
+            :icon="importIco"
+            :disabled="importDisabled"
+          >{{importText}}</el-button>
+        </el-upload>
+        <el-button size="small" type="success" @click="exportData" icon="el-icon-download">导出数据</el-button>
+      </div>
     </div>
-    <!-- <div>
-      <el-upload action="/system/basic/pos/import" :show-file-list="false" :before-upload="beforeUpload" :on-success="onSuccess"
-      :on-error="onError" :disabled="importBtnDisabled" style="display:inline-flex;margin-right:10px">
-      <el-button :disabled="importBtnDisabled" type="success" :icon="importBtnIcon" size="small">
-            {{importBtnText}}
-      </el-button>
-      </el-upload>
-      <el-button type="success" icon="el-icon-download" size="small" @click="exportData">
-          导出数据
-      </el-button>
-    </div> -->
     <div>
       <!-- 表格birder为true有边框 -->
       <el-table
@@ -33,6 +44,8 @@
         type="small"
         style="width: 84%"
         @selection-change="handleSelectionChange"
+        v-loading="loading"
+        element-loading-text="正在加载"
       >
         <!-- 多选 -->
         <el-table-column type="selection" width="80"></el-table-column>
@@ -54,8 +67,15 @@
         </el-table-column>
       </el-table>
       <div class="pageable">
-        <el-pagination :total="pageInfo.total"  :page-size="5" @current-change="handleCurrentChange" layout="sizes,prev,pager,next,jumper,->,total,slot"
-          page-sizes="[5,10,20,50,100]" @size-change="handleSizeChange"></el-pagination>
+        <el-pagination
+          background
+          :total="pageInfo.total"
+          :page-size="5"
+          :page-sizes="[5,10,20,50,100]"
+          @current-change="handleCurrentChange"
+          layout="sizes,prev,pager,next,jumper,->,total,slot"
+          @size-change="handleSizeChange"
+        ></el-pagination>
       </div>
       <el-button
         type="danger"
@@ -91,51 +111,86 @@ export default {
       pos: {
         name: ''
       },
-     
+
       //显示表格的数据
       positions: [],
+
       // 更新按钮的数据
       updatePos: {
         name: '',
         enabled: true
       },
+
       // 对话框显示与否的标志位
       dialogVisible: false,
       // 批量删除的数据记录
       multipleSelection: [],
-      loading:true,
-      pageInfo:{
-        total:0,
-        page:1,
-        size:5
+      loading: true,
+      pageInfo: {
+        total: 0,
+        page: 1,
+        size: 5
       },
+      //对导入数据属性进行定义
+      importText: '导入数据',
+      importIco: 'el-icon-upload2',
+      importDisabled: false
     }
   },
 
   methods: {
+    // 上传成功有三个回调
+    onSuccess(response, file, fileList) {
+      this.importText = '导入数据'
+      this.importIco = 'el-icon-upload2'
+      this.importDisabled = false
+      this.initPositions()
+    },
+
+    // 上传失败
+    onError(err, file, fileList) {
+      this.importText = '导入数据'
+      this.importIco = 'el-icon-upload2'
+      this.importDisabled = false
+    },
+    // 上传之前 对文字和图标进行更改
+    beforeUpload() {
+      this.importText = '正在导入'
+      this.importIco = 'el-icon-loading'
+      this.importDisabled = true
+    },
+    exportData() {
+      window.open('/system/basic/pos/export')
+    },
+
     // 表格数据初始化处理
     async initPositions() {
       // const data = await this.getRequest('/system/basic/pos/')
       // if (data) {
       //   this.positions = data.obj
       // }
-      // this.loading=true
-      const resp=await this.getRequest('/system/basic/pos/?page='+this.pageInfo.page+'&size='
-      +this.pageInfo.size)
-      if(resp){
-        this.positions=resp.obj.list
-        this.pageInfo.total=resp.obj.total
-
+      this.loading = true
+      const resp = await this.getRequest(
+        '/system/basic/pos/?page=' +
+          this.pageInfo.page +
+          '&size=' +
+          this.pageInfo.size
+      )
+      this.loading = false
+      if (resp) {
+        this.positions = resp.obj.list
+        this.pageInfo.total = resp.obj.total
       }
     },
-    handleSizeChange(currestSize){
-      this.pageInfo.size=currestSize
+    handleSizeChange(currestSize) {
+      this.pageInfo.size = currestSize
       this.initPositions()
     },
-    handleCurrentChange(currentPage){
-      this.pageInfo.page=currentPage
+    handleCurrentChange(currentPage) {
+      this.pageInfo.page = currentPage
       this.initPositions()
     },
+
     // 添加新记录的事件处理
     async addPosition() {
       if (this.pos.name) {
@@ -149,10 +204,12 @@ export default {
         this.$message.error('职位名称不能为空')
       }
     },
+
     // 显示修改对话框
     showEditDialog(index, data) {
       // 浅拷贝会改变表格的记录
-      Object.assign(this.updatePos, data) // 使用深拷贝
+      Object.assign(this.updatePos, data)
+      // 使用深拷贝
       this.dialogVisible = true
     },
     // 弹框确认修改的事件处理
@@ -233,14 +290,28 @@ export default {
 <style scoped>
 .input_type {
   width: 300px;
-  margin-right: 8px;
-  margin-bottom: 16px;
+  margin-right: 10px;
+  margin-bottom: 15px;
 }
 .update_input {
   width: 200px;
-  margin-left: 8px;
+  margin-left: 10px;
 }
 .table {
   text-align-last: center;
 }
+.button {
+  text-align-last: center;
+  font-size: 15px;
+}
+.pageable {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+/* .upload {
+  display: inline-flex;
+  margin-right: 15px;
+  margin-left: 90px;
+} */
 </style>

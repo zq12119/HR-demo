@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.springboot.vhrend.model.Position;
 import com.springboot.vhrend.model.RespBean;
 import com.springboot.vhrend.service.system.basic.PositionService;
+import com.springboot.vhrend.utils.PoiUtils;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+
 
 @RestController
 @Api(value = "职位管理",tags = {"职位管理窗口"})
@@ -31,7 +33,8 @@ public class PositionController {
     @ApiOperation(value = "分页获取职位",notes = "职位信息列表",produces = "application/json")
     public RespBean getPositionByPage(@RequestParam(defaultValue = "1")Integer page,
                                       @RequestParam(defaultValue = "5")Integer size){
-        PageInfo<Position> positions=positionService.getPostionByPage(page,size);
+//        PageInfo<Position> positions=positionService.getPostionByPage(page,size);
+        PageInfo<Position> positions=positionService.getPositionByPage(page,size);
         return RespBean.ok("",positions);
     }
 
@@ -69,5 +72,27 @@ public class PositionController {
             return RespBean.ok("批量删除成功");
         }
         return RespBean.error("批量删除失败");
+    }
+
+
+    //    导入数据
+    @PostMapping("/import")
+    @ApiOperation(value = "导入数据",notes = "导入excel数据")
+    //    接收MultipartFile 接收之后可以直接解析
+    public RespBean importData(MultipartFile file) throws IOException {
+        List<Position> positions = PoiUtils.importData(file);
+        if(positionService.addPositions(positions) == positions.size()) {
+            return RespBean.ok("导入成功");
+        }
+        return RespBean.ok("导入失败");
+    }
+//    导出数据
+    @GetMapping("/export")
+//    swagger
+    @ApiOperation(value = "导出数据", notes = "将所有职位管理信息全部导出到EXCEL")
+//    使用ResponseEntity来进行导出excel
+    public ResponseEntity<byte[]> exportData() {
+        List<Position> positions = positionService.getAllPosition();
+        return PoiUtils.exportData(positions);
     }
 }

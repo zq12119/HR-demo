@@ -10,6 +10,7 @@
     <sql id="Base_Column_List" >
     id, name, createDate, enabled
   </sql>
+
     <insert id="batchInsert" parameterType="com.springboot.vhrend.model.Position">
         insert into position (name, createDate, enabled) values
         <foreach collection="list" item="position" separator=",">

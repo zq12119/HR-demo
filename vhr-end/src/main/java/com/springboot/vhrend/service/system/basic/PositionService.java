@@ -33,14 +33,14 @@ public class PositionService {
     public Integer deletePosition(Integer[] ids) {
         return positionMapper.deleteByIds(ids);
     }
-    
-    public int addPositions(List<Position> positions) {
-        return positionMapper.batchInsert(positions);
-    }
 
-    public PageInfo<Position> getPostionByPage(Integer page, Integer size) {
+    public PageInfo<Position> getPositionByPage(Integer page, Integer size) {
         PageHelper.startPage(page, size);
         List<Position> positions = positionMapper.selectAllPosition();
         return new PageInfo<>(positions, size);
+    }
+
+    public int addPositions(List<Position> positions) {
+        return positionMapper.batchInsert(positions);
     }
 }

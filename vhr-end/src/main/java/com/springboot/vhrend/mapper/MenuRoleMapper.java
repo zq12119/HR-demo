@@ -1,7 +1,8 @@
 package com.springboot.vhrend.mapper;
 
 import com.springboot.vhrend.model.MenuRole;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
+
 
 public interface MenuRoleMapper {
     int deleteByPrimaryKey(Integer id);

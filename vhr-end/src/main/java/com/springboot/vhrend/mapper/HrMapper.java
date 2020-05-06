@@ -2,9 +2,10 @@ package com.springboot.vhrend.mapper;
 
 import com.springboot.vhrend.model.Hr;
 import com.springboot.vhrend.model.Role;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.data.repository.query.Param;
+
 
 import java.util.List;
 

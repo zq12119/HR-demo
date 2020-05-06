@@ -4,16 +4,12 @@ import com.springboot.vhrend.mapper.MenuMapper;
 import com.springboot.vhrend.mapper.MenuRoleMapper;
 import com.springboot.vhrend.model.Hr;
 import com.springboot.vhrend.model.Menu;
-import com.springboot.vhrend.utils.HrUtils;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service

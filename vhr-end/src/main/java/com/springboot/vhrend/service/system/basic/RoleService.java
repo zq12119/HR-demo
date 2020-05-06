@@ -6,9 +6,9 @@ import com.springboot.vhrend.mapper.RoleMapper;
 import com.springboot.vhrend.model.Menu;
 import com.springboot.vhrend.model.Role;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
