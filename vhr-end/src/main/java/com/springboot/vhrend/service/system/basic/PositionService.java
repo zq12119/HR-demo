@@ -1,4 +1,5 @@
 package com.springboot.vhrend.service.system.basic;
+import com.github.pagehelper.PageHelper;
 import com.springboot.vhrend.mapper.PositionMapper;
 import com.springboot.vhrend.model.Position;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,12 @@ import com.github.pagehelper.PageInfo;
 
 @Service
 public class PositionService {
-    @Autowired
+    @Resource
     PositionMapper positionMapper;
-    public List<Position> getAllPositions() {
-        return positionMapper.getAllPositions();
+
+    public List<Position> getAllPosition() {
+
+        return positionMapper.selectAllPosition();
     }
 
     public Integer addPosition(Position position) {
@@ -22,15 +25,23 @@ public class PositionService {
         return positionMapper.insertSelective(position);
     }
 
-    public Integer updatePositions(Position position) {
+    public Integer updatePosition(Position position) {
         return positionMapper.updateByPrimaryKeySelective(position);
     }
 
-    public Integer deletePositionById(Integer id) {
+    public Integer deletePosition(Integer id) {
         return positionMapper.deleteByPrimaryKey(id);
     }
+    public Integer deletePosition(Integer[] ids) {
+        return positionMapper.deleteByIds(ids);
+    }
 
-    public Integer deletePositionsByIds(Integer[] ids) {
-        return positionMapper.deletePositionsByIds(ids);
+    public PageInfo<Position> getPositionByPage(Integer page, Integer size){
+        PageHelper.startPage(page,size);
+        List<Position> positions = positionMapper.selectAllPosition();
+        return new PageInfo<>(positions,size);
+    }
+    public int addPositions(List<Position> positions) {
+        return positionMapper.batchInsert(positions);
     }
 }

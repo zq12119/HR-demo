@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface PositionMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Position record);
@@ -17,7 +18,10 @@ public interface PositionMapper {
 
     int updateByPrimaryKey(Position record);
 
-    List<Position> getAllPositions();
+    @Select("select * from position")
+    List<Position> selectAllPosition();
 
-    Integer deletePositionsByIds(@Param("ids") Integer[] ids);
+    Integer deleteByIds(Integer[] ids);
+
+    Integer batchInsert(List<Position> positions);
 }

@@ -10,9 +10,19 @@
     <sql id="Base_Column_List" >
     id, name, createDate, enabled
   </sql>
-    <select id="getAllPositions" resultMap="BaseResultMap">
-    select * from position;
-  </select>
+    <insert id="batchInsert" parameterType="com.springboot.vhrend.model.Position">
+        insert into position (name, createDate, enabled) values
+        <foreach collection="list" item="position" separator=",">
+            (#{position.name,jdbcType=VARCHAR}, #{position.createDate, jdbcType=TIMESTAMP},
+            #{position.enabled, jdbcType=BIT})
+        </foreach>
+    </insert>
+    <delete id="deleteByIds" parameterType="java.lang.Integer">
+        delete from position where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")" >
+            #{id}
+        </foreach>
+    </delete>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
@@ -38,12 +48,8 @@
             <if test="name != null" >
                 name,
             </if>
-            <if test="createDate != null" >
-                createDate,
-            </if>
-            <if test="enabled != null" >
-                enabled,
-            </if>
+            createDate,
+            enabled,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -52,20 +58,10 @@
             <if test="name != null" >
                 #{name,jdbcType=VARCHAR},
             </if>
-            <if test="createDate != null" >
-                #{createDate,jdbcType=TIMESTAMP},
-            </if>
-            <if test="enabled != null" >
-                #{enabled,jdbcType=BIT},
-            </if>
+            now(),
+            true
         </trim>
     </insert>
-    <delete id="deletePositionsByIds">
-        delete from position where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
-    </delete>
     <update id="updateByPrimaryKeySelective" parameterType="com.springboot.vhrend.model.Position" >
         update position
         <set >

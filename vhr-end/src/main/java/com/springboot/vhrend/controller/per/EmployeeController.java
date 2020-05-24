@@ -81,7 +81,7 @@ public class EmployeeController {
 
     @GetMapping("/positions")
     public List<Position> getAllPositions() {
-        return positionService.getAllPositions();
+        return positionService.getAllPosition();
     }
     @GetMapping("/maxWorkID")
     public RespBean maxWorkID() {
@@ -108,7 +108,7 @@ public class EmployeeController {
         List<Employee> list = PoiUtils.excel2Employee(file, nationService.getAllNations(),
                 politicsstatusService.getAllPoliticsstatus(),
                 departmentService.getAllDepartmentsWithOutChildren(),
-                positionService.getAllPositions(),
+                positionService.getAllPosition(),
                 jobLevelService.getAllJobLevels());
         if (employeeService.addEmps(list) == list.size()) {
             return RespBean.ok("上传成功");
