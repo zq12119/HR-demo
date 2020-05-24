@@ -1,17 +1,63 @@
 package com.springboot.vhrend.model;
 
-public class Department {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class Department implements Serializable {
     private Integer id;
 
     private String name;
 
-    private Integer parentid;
+    private Integer parentId;
 
-    private String deppath;
+    public Department() {
+    }
+
+    public Department(String name) {
+
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name);
+    }
+
+    private String depPath;
 
     private Boolean enabled;
 
-    private Boolean isparent;
+    private Boolean isParent;
+    private List<Department> children = new ArrayList<>();
+    private Integer result;
+
+    public Integer getResult() {
+        return result;
+    }
+
+    public void setResult(Integer result) {
+        this.result = result;
+    }
+
+    public List<Department> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Department> children) {
+        this.children = children;
+    }
 
     public Integer getId() {
         return id;
@@ -29,22 +75,6 @@ public class Department {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
-
-    public String getDeppath() {
-        return deppath;
-    }
-
-    public void setDeppath(String deppath) {
-        this.deppath = deppath == null ? null : deppath.trim();
-    }
-
     public Boolean getEnabled() {
         return enabled;
     }
@@ -53,11 +83,27 @@ public class Department {
         this.enabled = enabled;
     }
 
-    public Boolean getIsparent() {
-        return isparent;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setIsparent(Boolean isparent) {
-        this.isparent = isparent;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getDepPath() {
+        return depPath;
+    }
+
+    public void setDepPath(String depPath) {
+        this.depPath = depPath;
+    }
+
+    public Boolean getParent() {
+        return isParent;
+    }
+
+    public void setParent(Boolean parent) {
+        isParent = parent;
     }
 }

@@ -8,8 +8,11 @@
   <sql id="Base_Column_List" >
     id, name
   </sql>
+  <select id="getAllPoliticsstatus" resultMap="BaseResultMap">
+    select * from politicsstatus
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from politicsstatus
     where id = #{id,jdbcType=INTEGER}

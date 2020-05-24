@@ -1,5 +1,9 @@
 package com.springboot.vhrend.mapper;
 import com.springboot.vhrend.model.Employee;
+import org.apache.ibatis.annotations.Param;
+
+import java.sql.Date;
+import java.util.List;
 
 public interface EmployeeMapper {
     int deleteByPrimaryKey(Integer id);
@@ -13,4 +17,18 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
+
+    List<Employee> getEmployeeByPage(@Param("page") Integer page, @Param("size") Integer size, @Param("emp") Employee employee, @Param("beginDateScope") Date[] beginDateScope);
+
+    Long getTotal(@Param("emp") Employee employee,@Param("beginDateScope") Date[] beginDateScope);
+
+    Integer maxWorkID();
+
+    Integer addEmps(@Param("list") List<Employee> list);
+
+    Employee getEmployeeById(Integer id);
+
+    List<Employee> getEmployeeByPageWithSalary(@Param("page") Integer page, @Param("size") Integer size);
+
+    Integer updateEmployeeSalaryById(@Param("eid") Integer eid, @Param("sid") Integer sid);
 }

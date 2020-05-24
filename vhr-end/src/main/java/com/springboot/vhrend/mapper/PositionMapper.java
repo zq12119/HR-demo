@@ -1,5 +1,6 @@
 package com.springboot.vhrend.mapper;
 import com.springboot.vhrend.model.Position;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
@@ -16,9 +17,7 @@ public interface PositionMapper {
 
     int updateByPrimaryKey(Position record);
 
-    @Select("select * from position")
-    List<Position> selectAllPosition();
+    List<Position> getAllPositions();
 
-    Integer deleteByIds(Integer[] ids);
-    Integer batchInsert(List<Position> positions);
+    Integer deletePositionsByIds(@Param("ids") Integer[] ids);
 }

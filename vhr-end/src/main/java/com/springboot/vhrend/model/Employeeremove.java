@@ -1,7 +1,10 @@
 package com.springboot.vhrend.model;
 
-import java.util.Date;
+import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Date;
 public class Employeeremove {
     private Integer id;
 

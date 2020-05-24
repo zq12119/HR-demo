@@ -32,7 +32,7 @@ export default {
   name: 'SysBasic',
   data() {
     return {
-      //    第二个界面
+     
       activeName: 'second'
     }
   },

@@ -1,16 +1,17 @@
 package com.springboot.vhrend.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
-public class Position implements Serializable {
+public class JobLevel implements Serializable {
     private Integer id;
+
+    private String name;
+
+    private String titleLevel;
 
     @Override
     public boolean equals(Object o) {
@@ -20,8 +21,8 @@ public class Position implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Position position = (Position) o;
-        return Objects.equals(name, position.name);
+        JobLevel jobLevel = (JobLevel) o;
+        return Objects.equals(name, jobLevel.name);
     }
 
     @Override
@@ -30,16 +31,14 @@ public class Position implements Serializable {
         return Objects.hash(name);
     }
 
-    public Position() {
+    public JobLevel() {
 
     }
 
-    public Position(String name) {
+    public JobLevel(String name) {
 
         this.name = name;
     }
-
-    private String name;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date createDate;
@@ -59,7 +58,15 @@ public class Position implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
+    }
+
+    public String getTitleLevel() {
+        return titleLevel;
+    }
+
+    public void setTitleLevel(String titleLevel) {
+        this.titleLevel = titleLevel;
     }
 
     public Date getCreateDate() {

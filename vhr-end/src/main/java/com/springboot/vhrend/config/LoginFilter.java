@@ -23,9 +23,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             throw new AuthenticationServiceException(
                     "Authentication method not supported: " + request.getMethod());
         }
+
         String verifyCode = (String) request.getSession().getAttribute("verify_code");
         if (request.getContentType().equals(MediaType.APPLICATION_JSON_VALUE)) {
-            // 解析请求的 JSON字符串
+//           解析请求的 JSON字符串
             Map<String, String> loginData = new HashMap<>();
             try {
                 loginData = new ObjectMapper().readValue(request.getInputStream(), Map.class);

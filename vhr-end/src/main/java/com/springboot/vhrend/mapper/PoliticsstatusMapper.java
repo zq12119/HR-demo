@@ -1,6 +1,8 @@
 package com.springboot.vhrend.mapper;
 import com.springboot.vhrend.model.Politicsstatus;
 
+import java.util.List;
+
 public interface PoliticsstatusMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +15,6 @@ public interface PoliticsstatusMapper {
     int updateByPrimaryKeySelective(Politicsstatus record);
 
     int updateByPrimaryKey(Politicsstatus record);
+
+    List<Politicsstatus> getAllPoliticsstatus();
 }

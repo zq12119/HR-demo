@@ -1,7 +1,7 @@
-// 静态页面
+
 <template>
   <div>
-    <div style="display: flex;justify-content;" >
+    <div style="display: flex;justify-content;">
       <div>
         <el-input
           v-model="pos.name"
@@ -111,16 +111,13 @@ export default {
       pos: {
         name: ''
       },
-
       //显示表格的数据
       positions: [],
-
       // 更新按钮的数据
       updatePos: {
         name: '',
         enabled: true
       },
-
       // 对话框显示与否的标志位
       dialogVisible: false,
       // 批量删除的数据记录
@@ -137,7 +134,6 @@ export default {
       importDisabled: false
     }
   },
-
   methods: {
     // 上传成功有三个回调
     onSuccess(response, file, fileList) {
@@ -146,7 +142,6 @@ export default {
       this.importDisabled = false
       this.initPositions()
     },
-
     // 上传失败
     onError(err, file, fileList) {
       this.importText = '导入数据'
@@ -162,7 +157,6 @@ export default {
     exportData() {
       window.open('/system/basic/pos/export')
     },
-
     // 表格数据初始化处理
     async initPositions() {
       // const data = await this.getRequest('/system/basic/pos/')
@@ -190,7 +184,6 @@ export default {
       this.pageInfo.page = currentPage
       this.initPositions()
     },
-
     // 添加新记录的事件处理
     async addPosition() {
       if (this.pos.name) {
@@ -204,7 +197,6 @@ export default {
         this.$message.error('职位名称不能为空')
       }
     },
-
     // 显示修改对话框
     showEditDialog(index, data) {
       // 浅拷贝会改变表格的记录

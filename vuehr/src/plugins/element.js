@@ -13,9 +13,13 @@ import {
   Tabs,TabPane,
   Table,TableColumn,Dialog,Tag,
   Select,Option,Switch,Collapse,CollapseItem,Card,
-  Tree,Loading,Image,Popover,Pagination,Upload
+  Tree,Loading,Image,Popover,Pagination,Upload,
+  Row,Col,DatePicker
 } from 'element-ui'
 
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(DatePicker)
 Vue.use(Popover)
 Vue.use(Pagination)
 Vue.use(Upload)

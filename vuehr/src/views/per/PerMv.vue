@@ -3,16 +3,13 @@
     员工调动
   </div>
 </template>
-
 <script>
 export default {
-  name: 'PerMv',
+  name: 'PerEmp',
   data () {
     return {}
   }
 }
 </script>
-
 <style scoped>
-
 </style>

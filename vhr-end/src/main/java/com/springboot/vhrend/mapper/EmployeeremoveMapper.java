@@ -1,4 +1,5 @@
 package com.springboot.vhrend.mapper;
+
 import com.springboot.vhrend.model.Employeeremove;
 
 public interface EmployeeremoveMapper {

@@ -24,7 +24,7 @@ public class CusotmUrlDecisionManager implements AccessDecisionManager {
                 }
                 return;
             }
-            // 获取登录用户的角色
+//           获取登录用户的角色
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (GrantedAuthority authority : authorities) {
                 if(authority.getAuthority().equals(needRole)) {
@@ -34,12 +34,10 @@ public class CusotmUrlDecisionManager implements AccessDecisionManager {
         }
         throw new AccessDeniedException("权限不足，请联系管理员");
     }
-
     @Override
     public boolean supports(ConfigAttribute configAttribute) {
         return true;
     }
-
     @Override
     public boolean supports(Class<?> aClass) {
         return true;

@@ -35,7 +35,7 @@ public class SwaggerConfig {
                 .build();
 
     }
-    //配置页面展示的基本信息
+//    配置页面展示的基本信息
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("消息管理")
